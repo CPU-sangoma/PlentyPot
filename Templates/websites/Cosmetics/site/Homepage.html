@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Plentypot</title>
+  </head>
+  <body>
+      <style>
+          .scrollimage {
+            background-image: url("https://img5.goodfon.com/wallpaper/nbig/5/7d/decorative-cosmetics-makeup-kosmetika-teni-makiiazh-kistochk.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            
+            }
+
+          .centered {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  }
+      .banner{
+            background-image: url('{{ homedata.BannerImage.url }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            height: 350px;
+            width: 100%;
+        }
+        .textover{
+              position: relative;
+              text-align: center;
+          }
+
+          .embed-responsive .card-img-top{
+            object-fit: cover;
+          }
+      
+      </style>
+    
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{ business.business_name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'cosmeticshome' name=business.business_name %}">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="{% url 'cosmeticswork' name=business.business_name %}">Prices and products</a>
+            <a class="nav-item nav-link" href="{% url 'cosmeticscontact' name=business.business_name %}">Contact</a>
+           
+          
+          </div>
+        </div>
+      </nav>
+
+    
+    <div class="textover">
+            <div class="banner shadow-lg"></div>
+            <h1 class="centered text-white ">Welcome to {{ business.business_name }}</h1>
+            
+        </div>
+
+
+
+    <div class=" scrollimage bg-light pb-5">
+              
+
+    <div class="  container pt-5 text-white">
+
+            <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col mb-4">
+                      <div class="card bg-light shadow-lg">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                   <img src="{{ homedata.firstpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                                </div>
+                        
+                        <!-- <div class="card-body">
+                          <h5 class="card-title">Eveything lips</h5>
+                          <p class="card-text">From matte to glossy sassy lips, we can sort you out</p>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col mb-4">
+                      <div class="card bg-light shadow-lg">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img src="{{ homedata.secondpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                    </div>
+                        <!-- <div class="card-body">
+                          <h5 class="card-title">Face beat</h5>
+                          <p class="card-text">Want to feel cute and all, we make the best face beats in town, check us out today</p>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col mb-4 ">
+                      <div class="card bg-light shadow-lg">
+                        <div class="embed-responsive embed-responsive-16by9">
+                         <img src="{{ homedata.thirdpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                        </div>
+                        <!-- <div class="card-body">
+                          <h5 class="card-title">Eyebrows</h5>
+                          <p class="card-text">Stop looking ridiculous in public let us help you to become sassy</p>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col mb-4">
+                      <div class="card bg-light shadow-lg">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <img src="{{ homedata.forthpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                        </div>
+                        <!-- <div class="card-body">
+                          <h5 class="card-title">Full packages</h5>
+                          <p class="card-text">from nail to face we have them all visit us today now.</p>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+    </div>
+
+    </div>
+
+    <div class="bg-success pb-5">
+            
+                    <h1 class="text-center text-white">Our work</h1>
+                   <hr class="container">
+           
+            <div class="container">
+                    <div class="card-deck mt-3 text-white ">
+                            <div class="card bg-success shadow-lg border border-dark">
+                              <img src="{{ homedata.fstworkpic.url }}" class="card-img-top" alt="...">
+                              <div class="card-body">
+                               
+                                <p class="card-text">{{ homedata.fstworkdes }}</p>
+                                
+                              </div>
+                            </div>
+                            <div class="card bg-success shadow-lg border border-dark">
+                              <img src="{{ homedata.secworkpic.url }}" class="card-img-top" alt="...">
+                              <div class="card-body">
+                                
+                                <p class="card-text">{{ homedata.secworkdes }}</p>
+                                
+                              </div>
+                            </div>
+                            <div class="card bg-success shadow-lg border border-dark">
+                              <img src="{{ homedata.thirdworkpic.url }}" class="card-img-top" alt="...">
+                              <div class="card-body">
+                               
+                                <p class="card-text">{{ homedata.thirdworkdes }}</p>
+                                
+                              </div>
+                            </div>
+                          </div>
+        
+            </div>
+
+    </div>
+
+    <div class=" bg-dark text-white pb-4">
+                <h1 class="text-center text-white pt-3">The Team</h1>
+                   <hr class="container">
+            <div class="row justify-content-between mx-auto">
+                        <div class="col-lg-4 text-center px-5">
+                                <div class="shadow rounded-circle mt-3 mx-auto" style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.fstteampic.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+                          
+                          <p>{{ homedata.fstteamdes }}</p>
+                        
+                        </div><!-- /.col-lg-4 -->
+                        <div class="col-lg-4 text-center px-5">
+                                <div class="shadow rounded-circle mt-3 mx-auto" style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.secteampic.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+                         
+                          <p>{{ homedata.secteamdes }}</p>
+                          
+                        </div><!-- /.col-lg-4 -->
+                        <div class="col-lg-4 text-center px-5">
+                                <div class="shadow rounded-circle mt-3 mx-auto" style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.thirdpic.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+                        
+                          <p>{{ homedata.thirdteamdes }}</p>
+                          
+                        </div><!-- /.col-lg-4 -->
+                      </div><!-- /.row -->
+    
+    
+        </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

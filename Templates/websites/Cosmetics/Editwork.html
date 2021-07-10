@@ -1,0 +1,91 @@
+{% load static %}
+{%load crispy_forms_tags%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <title>Document</title>
+</head>
+<body>
+
+    {% include 'websites/Cosmetics/cosmeticsnavbar.html' %}
+
+  <div class="container">
+        {% if messages %}
+    {% for message in messages %}
+
+    <div class='alert alert-{{ message.tags }} mt-2'>
+        {{ message }}
+    </div>
+
+    {%endfor%}
+{%endif%}
+  </div>
+
+    <div class="container">
+
+        <form action="" method="POST" enctype="multipart/form-data">
+
+         {% csrf_token %}
+
+         <p><b> Upload a new picture of one of your works </b></p>
+
+         <input required type="file" name="cospic" id="slotpic">
+
+         <br>
+         <p></p>
+         <p><b>The detailed description about this picture</b></p>
+         <br>
+
+         <textarea required class="form-control" name="cosdes" id="" cols="30" rows="10"></textarea>
+
+         <input class="btn btn-danger mt-3" type="submit" value="Update">
+
+        </form>
+
+        <hr>
+
+        <h3 class="text-center"><b>List of uploaded items</b></h3>
+
+        <hr>
+
+        {% for data in infos %}
+
+
+
+        <div style="height: wrap;" class="shadows col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xlg-10 media p-2 mb-2 mt-2 bg-white rounded ">
+
+
+            <div class="m-2 border rounded mr-3" style="background-image: url('{{ data.Workpic.url }}');background-size: cover;background-position: center;height:100px;width:100px">
+
+        </div>
+            <div class="media-body">
+                <form action="{% url 'deletework' %}" method="POST">
+                    {% csrf_token %}
+                   <button class="btn btn-warning">Delete</button>
+                   <input type="hidden" name="workid" value="{{data.id}}">
+                </form>
+
+
+
+            </div>
+        </div>
+
+
+
+        {%endfor%}
+
+
+
+
+    </div>
+
+
+
+
+</body>
+</html>

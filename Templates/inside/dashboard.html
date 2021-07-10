@@ -1,0 +1,51 @@
+{% extends "inside/main.html" %}
+
+
+{% load static %}
+
+
+{% block content %}
+{% include "inside/navbar.html" %}
+
+
+<div class="container">
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 100%;">
+            <div class="card-body">
+                <h1 class="card-title row justify-content-md-center">Dashboard</h1>
+                <hr>
+                <h5 class="card-text row justify-content-md-center">Welcome to your dashboard were you can view your statistics and edit your website template</h5>
+    
+            </div>
+    
+            <div class="row justify-content-md-center">
+                <div class="col-sm-12 col-md-6 col-lg-6 mb-3">
+                        <div class="card shadow-sm bg-white rounded" style="width: 100%;">
+                                <div class="card-body pt-0 px-0">
+                                   
+                                    <h5 class="card-title bg-primary text-white text-center py-2">Business statics and performance <i class="fas fa-chart-line" style="font-size:20px;"></i></h5>
+                                    <div class="px-3">
+                                        <h5 class="card-text"><i class="fas fa-eye"></i> Page visits: </h5>
+                                        <h5 class="card-text">
+                                            
+                                           
+                                                <i class="fas fa-heart" style="color:red"></i> Recommended: {{ user.businesspro.recommendations}} Times</h5>
+
+                                        <h5 class="card-text"><i style="color: orangered" class="fas fa-comment"></i> Reviews: {{ user.businesspro.reviews.count }} </h5>
+
+                                     
+                                     
+                                     </div> 
+                                  
+                                </div>
+                        </div>
+                </div>
+    
+            </div>
+    
+            <hr>
+    
+    
+    </div>
+    
+  
+{% endblock content %}

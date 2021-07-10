@@ -1,0 +1,116 @@
+{% extends 'inside/base.html' %}
+{%load crispy_forms_tags%}
+
+
+
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <br>
+    {% if user.Account == "Business" %}
+    <div class="container">
+    {{ form.business_name|as_crispy_field }}
+    {{ form.business_email|as_crispy_field }}
+    {{ form.office_number|as_crispy_field }}
+    {{ form.phone_number|as_crispy_field }}
+    {{ form.fax|as_crispy_field }}
+    {{ form.logo|as_crispy_field }}
+    {{ form.Product1|as_crispy_field }}
+    {{ form.Product2|as_crispy_field }}
+    {{ form.Product3|as_crispy_field }}
+    {{ form.Product4|as_crispy_field }}
+    {{ form.type_of_business|as_crispy_field }}
+    {{ form.description|as_crispy_field }}
+    {{ form.operating_hours|as_crispy_field }}
+    {{ form.streetname|as_crispy_field }}
+    {{ form.suburb|as_crispy_field }}
+    {{ form.city|as_crispy_field }}
+    {{ form.province|as_crispy_field }}
+    <div class="mb-4" style="border: 3px navy solid; background:pink; color:black">
+        <div class="container">
+                <h3>Business Location area</h3>
+                <p>Are you currently at your business office or workplace? press the below buttton if not, wait until you are!!</p>
+                <button id="mapbtn" class="btn btn-primary mb-1" type="button">Set location</button>
+                <br>
+
+               <label>Latitude</label> <input value="{{pro.latitude}}" class="form-control mb-2" name="lat" id="latitude" type="text">
+                <label>Longitude</label><input value="{{pro.longitude}}" vaue class="form-control mb-2" name="long" id="longitude" type="text">
+        </div>
+
+
+    </div>
+
+
+
+
+    </div>
+
+    {%else%}
+    {{ form|crispy }}
+    {%endif%}
+
+    <input class="btn btn-primary mb-3" type="submit" value="update">
+
+</form>
+
+
+
+<script>
+    $(document).ready(function(){
+
+        if ('{{ user.businesspro.Complete }}' == 1){
+
+            $("#div_id_type_of_business").hide()
+
+        }
+    })
+</script>
+
+<script>
+  var user = '{{ user.Account }}';
+
+    if( user == "Business"){
+        function initMap(){
+
+            x = navigator.geolocation;
+            x.getCurrentPosition(success,failure)
+
+
+
+            function success(position){
+
+            var mylat = position.coords.latitude;
+            var mylong = position.coords.longitude;
+
+
+            $("#mapbtn").click(function(){
+
+                $("#latitude").val(parseFloat(mylat))
+                $("#longitude").val(parseFloat(mylong))
+            })
+            }
+
+            function failure(){
+
+            }
+
+        }
+
+    }else{
+
+    }
+
+
+
+
+
+
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj8V-SQFaqJu17xCRcSZOGtIXh6ZhUMqY&callback=initMap">
+    </script>
+{% endblock content %}

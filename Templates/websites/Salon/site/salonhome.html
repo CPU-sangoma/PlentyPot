@@ -1,0 +1,232 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Plentypot</title>
+  </head>
+  <body>
+      <style>
+          .scrollimage {
+            background-image: url("{{ homedata.BannerImage.url }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            width: 100%;
+            background-attachment: fixed;
+
+            }
+
+
+
+          .centered {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  }
+      .banner{
+            background-image: url("{{ homedata.BannerImage.url }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 350px;
+            width: 100%;
+        }
+        .textover{
+              position: relative;
+              text-align: center;
+          }
+
+          .embed-responsive .card-img-top {
+              object-fit: cover;
+          }
+
+
+      </style>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{ business.business_name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'salonhomepage' name=business.business_name %}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="{% url 'salonpricespage' name=business.business_name %}">Prices</a>
+            <a class="nav-item nav-link" href="{% url 'saloncontactspage' name=business.business_name %}">Contact</a>
+
+          </div>
+        </div>
+      </nav>
+
+
+    <div class="textover">
+            <div class="banner "></div>
+            <h1 class="centered text-white ">{{ business.business_name }}</h1>
+
+        </div>
+
+
+        <div class="container mt-4 mb-5">
+                <h3 class="text-center">{{ business.description }}</h3>
+            <div class="row justify-content-around">
+                        <div class="col text-center ">
+                                <div class="shadow rounded-circle mt-3 mx-auto" style="height: 270px;width: 270px;background-image: url('{{ homedata.image1.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+
+
+                        </div><!-- /.col-lg-4 -->
+                        <div class="col text-center ">
+                                <div class="shadow rounded-circle mt-3 mx-auto" style="height: 270px;width: 270px;background-image: url('{{ homedata.image2.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+
+
+                        </div><!-- /.col-lg-4 -->
+                        <div class="col text-center ">
+                                <div class="shadow rounded-circle mt-3 mx-auto" style="height: 270px;width: 270px;background-image: url('{{ homedata.image3.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+
+
+                        </div><!-- /.col-lg-4 -->
+                    </div><!-- /.row -->
+
+        </div>
+        <!-- Only for medium to larger devices  -->
+    <div class="container mb-5 pt-5 d-none d-md-block">
+        <div class="row ">
+            <div class="col ml-2 ">
+                <div class="scrollimage rounded-pill"></div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- Only shown for small devices -->
+    <div class="mb-5 pt-5 d-md-none d-lg-none d-xl-none">
+
+                <div class="scrollimage" style="height: 230px;"> <h2 class="text-white container pt-2 text-center">" Attend the streets with your head in the game, a fresh cut calls for a fresh day "</h2></div>
+
+    </div>
+
+
+<div class="bg-light pb-3 pt-1">
+        <h2 class="text-center mt-5 ">A few examples</h2>
+<div class="container overflow-auto py-4">
+
+    <div class="container-fluid">
+            <div class="row flex-row flex-nowrap mb-2">
+                        <div class="col mr-4">
+                                <div class="card" style="width: 14rem;">
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="card-img-top embed-responsive-item" src="{{ homedata.example1.url }}" alt="Card image cap">
+                                        </div>
+                                            <!-- <div class="card-body py-1">
+                                        <h5 class="card-title text-center">Fades</h5>
+
+                                        </div> -->
+                                    </div>
+                        </div>
+                        <div class="col mr-4">
+                                <div class="card" style="width: 14rem;">
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                         <img class="card-img-top embed-responsive-item" src="{{ homedata.example2.url }}" alt="Card image cap">
+                                        </div>
+                                         <!-- <div class="card-body py-1">
+                                            <h5 class="card-title text-center">Brushcuts</h5>
+
+                                        </div> -->
+                                    </div>
+                        </div>
+                        <div class="col mr-4">
+                                <div class="card" style="width: 14rem;">
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="card-img-top embed-responsive-item" src="{{ homedata.example3.url }}" alt="Card image cap">
+                                        </div>
+                                            <!-- <div class="card-body py-1">
+                                        <h5 class="card-title text-center">Braids</h5>
+
+
+                                        </div> -->
+                                    </div>
+                        </div>
+                        <div class="col mr-4">
+                                <div class="card" style="width: 14rem;">
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="card-img-top embed-responsive-item" src="{{ homedata.example4.url }}" alt="Card image cap">
+                                        </div>
+                                            <!-- <div class="card-body py-1">
+                                        <h5 class="card-title text-center">S'curl and cut</h5>
+
+
+                                        </div> -->
+                                    </div>
+                        </div>
+
+                        <div class="col mr-4">
+                                <div class="card" style="width: 14rem;">
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="card-img-top embed-responsive-item" src="{{ homedata.example5.url }}" alt="Card image cap">
+                                        </div>
+                                            <!-- <div class="card-body py-1">
+                                        <h5 class="card-title text-center">S'curl and cut</h5>
+
+
+                                        </div> -->
+                                    </div>
+                        </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+<div class=" bg-dark text-white pb-4">
+    <h1 class="text-center text-white pt-3">The team</h1>
+       <hr class="container">
+<div class="row justify-content-between mx-auto">
+            <div class="col-lg-4 text-center px-5">
+                    <div class="shadow rounded-circle mt-3 mx-auto" style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.team1pic.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+              <h2 >{{ homedata.team1Name }}</h2>
+              <p>{{ homedata.team1des }}</p>
+
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4 text-center px-5">
+                    <div class="shadow rounded-circle mt-3 mx-auto" style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.team2pic.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+              <h2>{{ homedata.team2Name }}</h2>
+              <p>{{ homedata.team2des }}</p>
+
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4 text-center px-5">
+                    <div class="shadow rounded-circle mt-3 mx-auto" style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.team3pic.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+              <h2>{{ homedata.team3name }}</h2>
+              <p>{{ homedata.team3des }}</p>
+
+            </div><!-- /.col-lg-4 -->
+          </div><!-- /.row -->
+
+
+</div>
+
+</div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

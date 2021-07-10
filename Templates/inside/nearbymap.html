@@ -1,0 +1,134 @@
+{% extends 'inside/base.html '%}
+{% load static %}
+
+
+
+
+
+{%block content%}
+
+
+<h1>map</h1>
+
+<div style="height: 400px;width:100%" id="map">
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+    function initMap(){
+
+        var businesslat = [];
+        var businesslng = [];
+        var names = [];
+        var tob = "{{ tob }}";
+        var png;
+
+        if (tob == 'Guest House'){
+            png = "http://maps.google.com/mapfiles/ms/icons/lodging.png";
+        }else if(tob== 'Cosmetics'){
+            png = "http://maps.google.com/mapfiles/ms/icons/pink-pushpin.png";
+        }else if(tob == "Club"){
+           png = "http://maps.google.com/mapfiles/ms/icons/bar.png";
+        }else if(tob == "Food"){
+            png ="http://maps.google.com/mapfiles/ms/icons/snack_bar.png";
+        }else if(tob == "Liquor Store"){
+            png ="http://maps.google.com/mapfiles/ms/icons/purple-dot.png";
+        }else if(tob == "BarberShop"){
+            png = "http://maps.google.com/mapfiles/ms/icons/purple-dot.png";
+        }else if(tob == "Salon"){
+            png ="http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+        }
+
+
+
+
+
+
+        {% for business in businesses %}
+        names.push('{{ business.business_name }}')
+        businesslat.push('{{ business.latitude }}');
+        businesslng.push('{{ business.longitude }}');
+
+        {% endfor %}
+
+            x = navigator.geolocation;
+            x.getCurrentPosition(success,failure)
+
+            function success(position){
+                var mylat = position.coords.latitude;
+                var mylng = position.coords.longitude;
+
+               var coords = new google.maps.LatLng(mylat,mylng);
+
+               var mapoptions ={
+                    zoom:14,
+                    center:coords,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+               }
+
+               var map = new google.maps.Map(document.getElementById('map'), mapoptions)
+
+
+               console.log(businesslat.length)
+
+               addMarker({lat:mylat,lng:mylng},"Me")
+
+
+                for(i=0;i<businesslat.length;i++){
+
+                    addMarker({lat:parseFloat(businesslat[i]),lng:parseFloat(businesslng[i])},names[i],png);
+                }
+
+
+
+
+
+
+
+              function addMarker(coord,title,icon){
+
+               var marker = new google.maps.Marker({
+                   position: coord,
+                   map:map,
+                   title:title,
+                   icon: icon
+
+               });
+
+           }
+
+            }
+
+            function failure(){
+
+            }
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj8V-SQFaqJu17xCRcSZOGtIXh6ZhUMqY&callback=initMap"
+async defer></script>
+
+{%endblock content%}

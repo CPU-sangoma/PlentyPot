@@ -1,0 +1,68 @@
+{% extends 'inside/base.html' %}
+{%load crispy_forms_tags%}
+
+
+
+{%block content%}
+<div class="alert alert-warning "><a href="{% url 'rec' %}">Recommend a business <i class="fas fa-suitcase    "></i> near you and make quick cash? click this link for more info <i class="fas fa-info    "></i> </a></div>
+
+<h1 class="text-center">Results</h1>
+<div class="container">
+        <div class="row">
+
+
+    {% if businesses.count > 0 %}
+
+    {% for business in businesses %}
+
+    <div style="height: wrap;" class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xlg-10 media border rounded-0  shadow-lg mb-2"><div class="m-2 border rounded mr-3" style="background-image: url('{{ business.logo.url }}');background-size: cover;background-position: center;height:100px;width:100px">
+
+    </div>
+        <div class="media-body">
+            <h5>{{ business.business_name }}</h5>
+            <hr>
+            <p>{{ business.description }}</p>
+            <a href="{% url 'details' tob=business.type_of_business id=business.id %}" class="btn btn-outline-primary mb-2">
+                Details
+            </a>
+            <a href="{% url 'reviews' business=business.id %}" style="color:white" class="btn btn-danger mb-2">
+                  Reviews <span class="badge badge-primary">{{ business.reviews.count }}</span>
+            </a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+
+        <div class="alert alert-warning"> There are no businesses matching your search, recommend a business and get forty percent of their monthly subscription. promotion ends 30 may 2020 </div>
+
+    {%endif %}
+
+
+
+   </div>
+
+   <div class="pagination mt-3 mb-3">
+
+    <span class="step-links">
+        {% if businesses.has_previous %}
+        <a class="btn btn-outline-primary mr-2" href="?page={{ businesses.previous_page_number }}">previous</a>
+        {%endif%}
+    </span>
+
+    {% for num in businesses.paginator.page_range %}
+
+    <a class="btn btn-primary mr-2" href="?page={{ num }}">{{ num }}</a>
+
+    {% endfor %}
+
+    {% if businesses.has_next%}
+    <a class="btn btn-outline-primary" href="?page={{ businesses.next_page_number }}">Next</a>
+    {%endif%}
+
+
+</div>
+
+
+{%endblock content%}

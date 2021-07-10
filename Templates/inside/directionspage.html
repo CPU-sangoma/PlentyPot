@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Travel Modes in Directions</title>
+
+  </head>
+  <body>
+    <div id="floating-panel">
+    <b>Mode of Travel: </b>
+    <select id="mode">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+    </div>
+    <div style="height: 400px; width:100%" id="map"></div>
+    <script>
+      function initMap() {
+
+        x = navigator.geolocation;
+        x.getCurrentPosition(success,failure);
+
+        function success(position){
+        var mylat = position.coords.latitude;
+        var mylng = position.coords.longitude;
+        var buslat = '{{ business.latitude }}';
+        var buslng = '{{ business.longitude }}';
+        
+        var directionsRenderer = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: {lat:mylat,lng:mylng}
+        });
+        directionsRenderer.setMap(map);
+
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
+        document.getElementById('mode').addEventListener('change', function() {
+          calculateAndDisplayRoute(directionsService, directionsRenderer);
+        });
+      
+
+      function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+      
+        var selectedMode = document.getElementById('mode').value;
+        directionsService.route({
+          origin: {lat: mylat, lng: mylng},  // Haight.
+          destination: {lat: parseFloat(buslat), lng: parseFloat(buslng)},  // Ocean Beach.
+          // Note that Javascript allows us to access the constant
+          // using square brackets and a string value as its
+          // "property."
+          travelMode: google.maps.TravelMode[selectedMode]
+        }, function(response, status) {
+          if (status == 'OK') {
+            directionsRenderer.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+            
+        }
+    }
+
+        function failure(position){
+
+        }
+        
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj8V-SQFaqJu17xCRcSZOGtIXh6ZhUMqY&callback=initMap">
+    </script>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Plentypot</title>
+  </head>
+  <body>
+    <style>
+        
+        .banner{
+            background-image: url('https://www.totalwine.com/media/sys_master/cmsmedia/h16/h91/12054644359198.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            height: 350px;
+            width: 100%;
+        }
+
+        .bottlepicture{
+          background-image: url('/static/giphy2.gif');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          
+          height: 40px;
+          width: 100%;
+      }
+
+
+ </style>
+    
+   
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">{{ business.business_name }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="{% url 'liquorhome' name=business.business_name %}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="{% url 'liquorsales' name=business.business_name %}"> All sales</a>
+        <a class="nav-item nav-link" href="{% url 'liquorcontacts' name=business.business_name %}">Contacts</a>
+      
+      </div>
+    </div>
+  </nav>
+
+
+   
+<div class="container shadow rounded mb-3" >
+  <div class="container mt-4">
+    <h2 class=" text-center mb-3">Sales and Deals</h2>
+    <hr>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-4">
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="{{ sales.sale1.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{sales.sale1des }}</h5>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="{{ sales.sale2.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ sales.sale2des }}</h5>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="{{ sales.sale3.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ sales.sale3des }}</h5>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="card h-100">
+                <img src="{{ sales.sale4.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ sales.sale4des }}</h5>
+                 
+                </div>
+              </div>
+            </div>
+          </div>    
+
+
+          <div class="row row-cols-1 row-cols-md-4">
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="{{ sales.sale5.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ sales.sale5des }}</h5>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="{{ sales.sale6.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ sales.sale6des }}</h5>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="{{ sales.sale7.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ sales.sale7des }}</h5>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <div class="card h-100">
+                    <img src="{{ sales.sale8.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ sales.sale8des }}</h5>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>    
+
+          
+    
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </bo

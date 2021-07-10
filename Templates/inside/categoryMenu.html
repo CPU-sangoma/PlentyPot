@@ -1,0 +1,262 @@
+{% extends 'inside/base.html' %}
+{%load crispy_forms_tags%}
+
+
+
+{%block content%}
+<div class="container">
+
+    <div class="alert alert-warning mt-4"><a href="{% url 'rec' %}">Want to make quick cash? click this link</a></div>
+
+        <h1 style="font-family: 'Roboto', sans-serif;" class="text-center mt-3 mb-3">{{ type }}s</h1>
+        <hr>
+
+
+        <h4 style="color: deeppink;" class="text-center mb-2">search by name</h4>
+
+        <form action="{% url 'searchedname' %}" method="post">
+
+            {% csrf_token %}
+
+            <input style="display:inline-block" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 ml-5 form-control" type="text" name="business_name">
+
+            <button style="display:inline-block" class="col-xs-12 col-sm-12 col-md-2 col-lg-4 btn btn-danger ml-3 mt-2 " type="submit">search <i class="fas fa-search"></i></button>
+
+            <input name="type" type="text" value="{{ type }}" hidden="True">
+
+        </form>
+
+        <h4 style="color: deeppink;" class="text-center mt-2"> or search by location</h4>
+
+
+            <form  id="searchF" action="{%url 'searched' %}" method="GET">
+                    {% csrf_token %}
+                    <div class="container ">
+                       <div class="row justify-content-md-center">
+
+                           <select class="col-xs-12 col-sm-12 col-md-6 ml-3 browser-default custom-select mt-2" name="Location" form="searchF">
+                                <optgroup label="North West">
+                                    <option value="Northwest Mafikeng">Mafikeng</option>
+                                    <option value="Northwest Mmabatho">Mmabatho</option>
+                                    <option value="Northwest Rustenburg">Rustenburg</option>
+                                    <option value="Northwest Potchefstroom">Potchefstroom</option>
+                                    <option value="Northwest Klerksdorp">Klerksdorp</option>
+                                </optgroup>
+
+                                <optgroup label="Gauteng">
+                                    <option value="Gauteng Johannesburg">Johannesburg</option>
+                                    <option value="Gauteng Krugersdorp">Krugersdorp</option>
+                                    <option value="Gauteng Pretoria">Pretoria</option>
+                                    <option value="Gauteng Randburg">Randburg</option>
+                                    <option value="Gauteng Randfontein">Randfontein</option>
+                                    <option value="Gauteng Roodepoort">Roodepoort </option>
+                                    <option value="Gauteng Soweto">Soweto</option>
+                                    <option value="Gauteng Springs">Springs</option>
+                                    <option value="Gauteng Vanderbijlpark">Vanderbijlpark</option>
+                                    <option value="Gauteng Vereeniging">Vereeniging</option>
+                                    <option value="Gauteng Germiston">Germiston</option>
+                                    <option value="Gauteng Carletonville">Carletonville</option>
+                                    <option value="Gauteng Brakpan">Brakpan</option>
+                                    <option value="Gauteng Boksburg">Boksburg</option>
+                                    <option value="Gauteng Benoni">Benoni</option>
+                                </optgroup>
+
+                                <optgroup label="FreeState">
+                                        <option value="FreeState Bloemfontein">Jagersfontein</option>
+                                        <option value="FreeState Bethlehem">Bethlehem</option>
+                                        <option value="FreeState Jagersfontein">Jagersfontein</option>
+                                        <option value="FreeState Kroonstad">Kroonstad</option>
+                                        <option value="FreeState  Odendaalsrus">Odendaalsrus</option>
+                                        <option value="FreeState Parys">Parys</option>
+                                        <option value="FreeState Phuthaditjhaba">Phuthaditjhaba</option>
+                                        <option value="FreeState Sasolburg">Sasolburg</option>
+                                        <option value="FreeState Virginia">Virginia</option>
+                                        <option value="FreeState Welkom">Welkom</option>
+                                    </optgroup>
+
+                                    <optgroup label="Eastern Cape">
+                                            <option value="EasternCape Alice">Alice</option>
+                                            <option value="EasternCape Butterworth">Butterworth</option>
+                                            <option value="EasternCape EastLondon">East London</option>
+                                            <option value="EasternCape Graaff-Reinet">Graaff-Reinet</option>
+                                            <option value="EasternCape Grahamstown">Grahamstown</option>
+                                            <option value="EasternCape King-William’s-Town">King William’s Town</option>
+                                            <option value="EasternCape Mthatha">Mthatha</option>
+                                            <option value="EasternCape Port-Elizabeth">Port Elizabeth</option>
+                                            <option value="EasternCape Queenstown">Queenstown</option>
+                                            <option value="EasternCape Uitenhage">Uitenhage</option>
+                                            <option value="EasternCape Zwelitsha">Zwelitsha</option>
+                                        </optgroup>
+
+                                        <optgroup label="KwaZulu-Natal">
+                                                <option value="KwaZulu-Natal Durban">Durban</option>
+                                                <option value="KwaZulu-Natal Empangeni">Empangeni</option>
+                                                <option value="KwaZulu-Natal Ladysmith">Ladysmith</option>
+                                                <option value="KwaZulu-Natal Newcastle">Newcastle</option>
+                                                <option value="KwaZulu-Natal Pietermaritzburg">Pietermaritzburg</option>
+                                                <option value="KwaZulu-Natal Pinetown">Pinetown</option>
+                                                <option value="KwaZulu-Natal Ulundi">Ulundi</option>
+                                                <option value="KwaZulu-Natal Umlazi">Umlazi</option>
+
+                                            </optgroup>
+
+                                            <optgroup label="Limpopo">
+                                                    <option value="Limpopo Giyani">Giyani</option>
+                                                    <option value="Limpopo Lebowakgomo">Lebowakgomo</option>
+                                                    <option value="Limpopo Musina">Musina</option>
+                                                    <option value="Limpopo Phalaborwa">Phalaborwa</option>
+                                                    <option value="Limpopo Polokwane">Polokwane</option>
+                                                    <option value="Limpopo Seshego">Seshego</option>
+                                                    <option value="Limpopo Sibasa">Sibasa</option>
+                                                    <option value="Limpopo Thabazimbi">Thabazimbi</option>
+                                                </optgroup>
+
+
+                                            <optgroup label="Mpumalanga">
+                                                <option value="Mpumalanga Emalahleni">Emalahleni</option>
+                                                <option value="Mpumalanga Nelspruit">Nelspruit</option>
+                                                <option value="Mpumalanga Secunda">Secunda</option>
+                                            </optgroup>
+
+                                            <optgroup label="Northern Cape">
+                                                    <option value="NorthernCape Kimberley">Kimberley</option>
+                                                    <option value="NorthernCape Kuruman">Kuruman</option>
+                                                    <option value="NorthernCape PortNolloth">Port Nolloth</option>
+                                                </optgroup>
+
+                                                <optgroup label="WesternCape">
+                                                        <option value="WesternCape Town">Cape Town</option>
+                                                        <option value="WesternCape Bellville">Bellville</option>
+                                                        <option value="WesternCape Constantia">Constantia</option>
+                                                        <option value="WesternCape George">George</option>
+                                                        <option value="WesternCape Hopefield">Hopefield</option>
+                                                        <option value="WesternCape Oudtshoorn">Oudtshoorn</option>
+                                                        <option value="WesternCape Paarl">Paarl</option>
+                                                        <option value="WesternCape Simon’s-Town">Simon’s Town</option>
+                                                        <option value="WesternCape Stellenbosch">Stellenbosch</option>
+                                                        <option value="WesternCape Swellendam">Swellendam</option>
+                                                        <option value="WesternCape Worcester">Worcester</option>
+                                                    </optgroup>
+
+
+
+                            </select>
+
+                           <button class="col-xs-12 col-sm-12 col-md-2 btn btn-primary ml-3 mt-2 " type="submit" value="search">search <i class="fas fa-search    "></i></button>
+                           <input name="type" type="text" value="{{ type }}" hidden="True">
+                       </div>
+                    </div>
+
+                 </form>
+
+                 <div class="text-center mt-3">
+                        <a class="col-xs-12 col-sm-12 col-md-6 col-lg-4 btn btn-warning mb-5 " href="{% url 'nearmap' type %}">{{ type }}s around me (map)</a>
+                </div>
+
+
+
+
+
+
+
+                        <div class="container">
+
+
+
+
+                             <div class="row">
+
+                            {% if businesses|length > 0 %}
+
+                            <h1 class=" text-center ">Best of south africa</h1>
+
+                            <hr>
+
+                            {% for business in businesses%}
+
+                            <div style="height: wrap;" class="shadows col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xlg-10 media p-2 mb-2 mt-2 bg-white rounded ">
+
+
+                                <div class="m-2 border rounded mr-3" style="background-image: url('{{ business.logo.url }}');background-size: cover;background-position: center;height:100px;width:100px">
+
+                            </div>
+                                <div class="media-body">
+                                    <h5>{{ business.business_name }}</h5>
+                                    <hr>
+                                    <p>{{ business.description }}</p>
+                                    <p><i style="color: red;" class="fas fa-heart    "></i> {{ business.recommendations }}</p>
+                                    <a href="{% url 'details' tob=business.type_of_business id=business.id %}" class="btn btn-outline-primary mb-2">
+                                        Details
+                                    </a>
+
+                                    <a href="{% url 'reviews' business=business.id %}" style="color:white" class="btn btn-danger mb-2">
+                                        <i class="fa fa-comment" aria-hidden="true"></i>    Reviews <span class="badge badge-primary">{{ business.reviews.count }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                            {%endfor%}
+
+
+
+
+                        {% else %}
+
+                        <div class="alert alert-warning"> There are no businesses yet in this category, recommend a business and get forty percent of their monthly subscription. promotion ends 30 may 2020 </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                        <div class="pagination mt-3 mb-3">
+
+                            <span class="step-links">
+                                {% if businesses.has_previous %}
+                                <a class="btn btn-outline-primary mr-2" href="?page={{ businesses.previous_page_number }}">previous</a>
+                                {%endif%}
+                            </span>
+
+                            {% for num in businesses.paginator.page_range %}
+
+                            <a class="btn btn-primary mr-2" href="?page={{ num }}">{{ num }}</a>
+
+                            {% endfor %}
+
+                            {% if businesses.has_next%}
+                            <a class="btn btn-outline-primary" href="?page={{ businesses.next_page_number }}">Next</a>
+                            {%endif%}
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock content%}

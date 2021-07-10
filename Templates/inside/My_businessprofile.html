@@ -1,0 +1,80 @@
+{% extends 'inside/base.html' %}
+{%load crispy_forms_tags%}
+
+
+
+{% block content %}
+
+
+
+
+<div class="card mb-3 mt-3 ">
+        <img src="{{ user.businesspro.logo.url }}" class="circle rounded-circle mt-3 ml-3" alt="...">
+        <div class="card-body">
+        
+            
+        <div class="row">
+            <div class="col mb-3">
+             
+                           
+                        <h3 class="card-title">({{ user.businesspro.business_name }}) <i class="fas fa-suitcase    "></i></h3>
+                        <h5 class="card-title">{{ user.businesspro.type_of_business }}</h5>
+                        <h5 class="card-title"><a href="">https://www.plentypot.com/{{ user.businesspro.business_name }}</a></h5>
+
+                   
+                        
+                        <p class="card-text">{{ user.businesspro.description }}</p>
+                        
+                        <h5 class="card-title ">Operating hours <i class="fas fa-clock    "></i></h5>
+                           <p>{{ user.businesspro.operating_hours }}</p>
+                     
+            </div>
+            <div class="col-2">
+                    
+            </div>
+            <div class="col">
+                    
+                           
+                                <div class="card mb-5" style="width: 18rem;">
+                                    <div class="card-body">
+                                      
+                                      <h4 class="card-subtitle mb-2 text-muted">Address <i class="fas fa-address-book    "></i></h4>
+                                      <p class="card-text mb-1">streetname: {{ user.businesspro.streetname}}</p>
+                                      <p class="card-text mb-1">city: {{ user.businesspro.city}}</p>
+                                      <p class="card-text mb-1">suburb: {{ user.businesspro.suburb}}</p>
+                                      <p class="card-text">province: {{ user.businesspro.province}}</p>
+                                     
+                                    </div>
+                                 </div>
+                            
+                        
+
+                        
+                                
+                                    <div class="card" style="width: 18rem;">
+                                        <div class="card-body">
+                                          
+                                          <h4 class="card-subtitle mb-2 text-muted">Contact <i class="fas fa-envelope    "></i></h4>
+                                          <p class="card-text mb-1">Email: {{ user.businesspro.business_email}}</p>
+                                          <p class="card-text mb-1">phone: {{ user.businesspro.phone_number}}</p>
+                                          <p class="card-text mb-1">office: {{ user.businesspro.office_number}}</p>
+                                          <p class="card-text ">fax: {{ user.businesspro.fax}}</p>
+                                         
+                                        </div>
+                                     </div>
+                                
+                            
+            </div>
+        </div>
+        
+
+       
+            
+        </div>
+</div>
+
+
+
+<a href="{%url 'editprofile' %}" class="btn btn-warning mb-3">Edit</a>
+
+{% endblock content %}

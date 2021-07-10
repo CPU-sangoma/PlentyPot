@@ -1,0 +1,94 @@
+{% extends 'inside/base.html' %}
+{%load crispy_forms_tags%}
+
+
+
+{% block content %}
+
+
+
+
+<div class="card mb-3 mt-3 ">
+        <img src="{{ user.userpic.url }}" class="circle rounded-circle mt-3 ml-3" alt="...">
+        <div class="card-body">
+        
+            
+        <div class="row">
+            <div class="col mb-3">
+             
+                           
+                        <h3 class="card-title">({{ user.username }})</h3>
+                        <h5 class="card-title">{{ user.Account }}</h5>
+                       
+                       
+                        
+                    
+                     
+            </div>
+            <div class="col-2">
+                    
+            </div>
+            <div class="col">
+                    
+                           
+                                <div class="card mb-5" style="width: 18rem;">
+                                    <div class="card-body">
+                                      
+                                      <h4 class="card-subtitle mb-2 text-muted">Address</h4>
+        
+                                      <p class="card-text mb-1">city: {{ user.customerpro.residence}}</p>
+                                   
+                                     
+                                    </div>
+                                 </div>
+                            
+                        
+
+                        
+                                
+                                    <div class="card" style="width: 18rem;">
+                                        <div class="card-body">
+                                          
+                                          <h4 class="card-subtitle mb-2 text-muted">Recommended businesses</h4>
+                                         
+                                        </div>
+                                     </div>
+                                
+                            
+            </div>
+        </div>
+        
+
+       
+            
+        </div>
+</div>
+
+
+
+<!-- description section -->
+
+
+<!-- <div class="float-right">
+    <div class="container ">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">({{ user.customerpro.business_name}})</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Address</h6>
+              <p class="card-text mb-1">streetname: {{ user.customerpro.streetname}}</p>
+              <p class="card-text mb-1">city: {{ user.customerpro.city}}</p>
+              <p class="card-text">suburb: {{ user.customerpro.suburb}}</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+         </div>
+    </div>
+</div> -->
+
+
+
+
+
+<a href="{%url 'editprofile' %}" class="btn btn-warning mb-3">Edit</a>
+
+{% endblock content %}

@@ -1,0 +1,217 @@
+{%load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Plentypot</title>
+  </head>
+  <body>
+    <style>
+        body{
+          background-color: rgb(46, 45, 45);
+          }
+          
+          .centered {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  }
+  
+          .banner{
+              background-image: url('/static/giphy2.gif');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              
+              height: 350px;
+              width: 100%;
+          }
+  
+          .textover{
+              position: relative;
+              text-align: center;
+          }
+  
+  
+   </style>
+   
+  <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+    <a class="navbar-brand" href="#">{{ business.business_name }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="{% url 'liquorhome' name=business.business_name %}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="{% url 'liquorsales' name=business.business_name %}"> All sales</a>
+        <a class="nav-item nav-link" href="{ url 'liquorcontacts' name=business_name %}">Find a store</a>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+     
+      <div class="container">
+        <h1 class="text-center text-white shadow-lg">Find us</h1>
+        </div>
+    
+    
+    
+    
+          <div class="container mt-5 mb-3">
+               
+          
+    
+          <div class="row">
+                <div class="col mb-3">
+                 
+                        <div id="map" style="width: 600px; height:500px">
+
+                        </div>
+                         
+                </div>
+                <div class="col-2">
+                        
+                </div>
+                <div class="col">
+                        
+                               
+                                    <div class="card mb-5 shadow-lg text-white bg-dark" style="width: 18rem;">
+                                        <div class="card-body">
+                                          
+                                          <h4 class="card-subtitle mb-2 text-muted">Address</h4>
+                                          <p class="card-text mb-1">streetname: {{ business.streetname }} </p>
+                                          <p class="card-text mb-1">city: {{ business.city }}</p>
+                                          <p class="card-text mb-1">suburb: {{ business.suburb }} </p>
+                                          <p class="card-text">province: {{ business.province }}</p>
+                                         
+                                        </div>
+                                     </div>
+                                
+                            
+    
+                            
+                                    
+                                        <div class="card shadow-lg text-white bg-dark" style="width: 18rem;">
+                                            <div class="card-body">
+                                              
+                                              <h4 class="card-subtitle mb-2 text-muted">Contact</h4>
+                                              <p class="card-text mb-1">Email: {{ business.business_email}}</p>
+                                              <p class="card-text mb-1">phone: business.phone_number}}</p>
+                                              <p class="card-text mb-1">office: {{ business.office_number}}</p>
+                                              <p class="card-text ">fax: {{ business.fax}}</p>
+                                             
+                                            </div>
+                                         </div>
+                                    
+                                
+                </div>
+            </div>
+            <hr>
+        </div>
+            
+    
+        <div class="container mb-4">
+                <h1 class="text-center text-white shadow-lg">Send us an email</h1>
+    
+      <div class="text-white shadow-lg">
+    
+                 <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Email address</label>
+                      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                   
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Enquiry</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </form>
+      </div>          
+     
+     </div>
+            
+    
+          
+<script>
+
+    function initMap(){
+
+        var buslat  = '{{ business.latitude }}';
+        var buslong = '{{ business.longitude }}';
+        var tob = '{{ business.type_of_business }}';
+        var png;
+
+        
+        if (tob == 'Guest House'){
+            png = '{% static "mapicons/motel.png" %}';
+        }else if(tob== 'Cosmetics'){
+            png = '{% static "mapicons/cosmetics.png" %}';
+        }else if(tob == "Club"){
+           png = '{% static "mapicons/bars.png" %}';
+        }else if(tob == "Food"){
+            png = '{% static "mapicons/food.png" %}';
+        }else if(tob == "Liquor Store"){
+            png = '{% static "mapicons/beer.png" %}';
+        }else if(tob == "BarberShop"){
+            png = '{% static "mapicons/salon.png" %}';
+        }else if(tob == "Salon"){
+            png = '{% static "mapicons/Salon.png" %}';
+        }
+
+        
+
+
+        var options = {
+
+            center:{lat:parseFloat(buslat),lng:parseFloat(buslong)},
+            zoom:17,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            
+
+        };
+
+
+
+        var markerop = {
+
+            position:{lat:parseFloat(buslat),lng:parseFloat(buslong)},
+            map:map,
+
+        }
+
+        var map = new google.maps.Map(document.getElementById('map'),options);
+
+        var marker = new google.maps.Marker({
+            position:{lat:parseFloat(buslat),lng:parseFloat(buslong)},
+            map:map,
+            icon:png
+
+        });
+
+    }
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj8V-SQFaqJu17xCRcSZOGtIXh6ZhUMqY&callback=initMap"
+async defer></script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

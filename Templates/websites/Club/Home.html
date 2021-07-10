@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Plentypot</title>
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 4px 4px 7px black ;
+        }
+
+        .banner {
+            background-image: url('{{ homedata.ResDjs1.url }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 350px;
+            width: 100%;
+        }
+
+        .scrollcontainer {
+            background-image: url('https://media2.giphy.com/media/dtLQW9pzQFHBwToRoV/giphy.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+        .textover {
+            position: relative;
+            text-align: center;
+        }
+
+        .embed-responsive .card-img-top {
+            object-fit: cover;
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{ business.business_name}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="{% url 'clubhome' name=business.business_name %}">Home<span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="{% url 'clubevents' name=business.business_name %}">Events</a>
+                <a class="nav-item nav-link" href="{% url 'clubtonight' name=business.business_name %}">Tonight</a>
+                
+                <a class="nav-item nav-link" href="{% url 'clubcontacts' name=business.business_name %}">Contact</a>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="textover">
+        <div class="banner shadow-lg"></div>
+        <h1 class="centered text-white">{{ homedata.welcome_message }}</h1>
+
+    </div>
+
+    <div class="container mt-4">
+        <h2 class="text-white text-center mb-3">Popping in {{ business.business_name }}</h2>
+
+        <h6 class="text-white text-center">{{ homedata.about_club }}</h6>
+        <hr>
+    </div>
+
+    <div class="container mt-4 mb-4 py-4">
+
+        <h2 class="text-white text-center mb-3">Gallery</h2>
+
+        <div class="card-deck">
+            <div class="card shadow-lg text-white bg-dark">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img src="{{ homedata.fstGpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                </div>
+
+            </div>
+            <div class="card shadow-lg text-white bg-dark">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img src="{{ homedata.secGpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                </div>
+
+            </div>
+            <div class="card shadow-lg text-white bg-dark">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <img src="{{ homedata.trdGpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                </div>
+
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col mb-4">
+                <div class="card shadow-lg text-white bg-dark">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img src="{{ homedata.frthGpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card shadow-lg text-white bg-dark">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img src="{{ homedata.fifGpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card shadow-lg text-white bg-dark">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img src="{{ homedata.sixthGpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card shadow-lg text-white bg-dark">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img src="{{ homedata.svthGpic.url }}" class="card-img-top embed-responsive-item" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+
+
+    <div class="scrollcontainer">
+        <h1 class="text-center pt-3" style="color:white">Resident Djs</h1>
+        <hr>
+
+
+        <div class="row justify-content-around pt-5 pb-5 mx-auto">
+            <div class="col-lg-3 text-center">
+                <div class="shadow rounded-circle mt-3 mx-auto"
+                    style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.ResDjs1.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;">
+                </div>
+                <h2 style="color: white;">{{ homedata.Resdj1name }}</h2>
+                <p style="color: white;">{{ homedata.Resdj1pro }}</p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-3 text-center">
+                <div class="shadow rounded-circle mt-3 mx-auto"
+                    style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.ResDjs2.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;">
+                </div>
+                <h2 style="color: white;">{{ homedata.Resdj2name }}</h2>
+                <p style="color: white;">{{ homedata.Resdj2pro }}</p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-3 text-center">
+                <div class="shadow rounded-circle mt-3 mx-auto"
+                    style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.ResDjs3.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;">
+                </div>
+                <h2 style="color: white;">{{ homedata.Resdj3name }}</h2>
+                <p style="color: white;">{{ homedata.Resdj3pro }}</p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-3 text-center">
+                <div class="shadow rounded-circle mt-3 mx-auto"
+                    style="height: 200px;width: 200px;margin-right: 0px;margin-left: 5px;background-image: url('{{ homedata.ResDjs4.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;">
+                </div>
+                <h2 style="color: white;">{{ homedata.Resdj4name }}</h2>
+                <p style="color: white;">{{ homedata.Resdj4pro }}</p>
+            </div><!-- /.col-lg-4 -->
+
+
+        </div><!-- /.row -->
+
+
+
+
+    </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

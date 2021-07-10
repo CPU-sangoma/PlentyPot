@@ -1,0 +1,186 @@
+{% extends 'inside/base.html' %}
+{%load crispy_forms_tags%}
+{%load static %}
+
+
+{% block content %}
+<div class="container">
+        <div class="text-center d-flex flex-column justify-content-start align-items-center" style="width: 100%;height: 100%;background-color: white;">
+            <h5 class="text-center" style="width: 155px;height: 30px;margin-top: 13px; color:white">{{ business.business_name }}</h5>
+            <div class="border rounded-circle" style="background-color: white;width: 250px;height: 250px;margin-bottom: 13px;background-position:center;background-repeat:no-repeat;background-size:cover;background-image:url('{{ business.logo.url }}')"></div>
+            <div class="container">
+                <div class="row">
+                        <div class="d-flex justify-content-center align-items-center" style="width: 100%;height: 100px;">
+
+                                <a href="{% url 'sitevisit' typ=business.type_of_business name=business.business_name %}" class="btn col-xs-12 col-sm-12 col-md-3 col-lg-3 mr-2" style="background: rgb(9, 170, 44);color:white;">
+                                        <b>Visit website <i class="fas fa-globe    "></i></b>
+                                </a>
+
+                                <form action="{% url 'recommend' %}" method="POST">
+
+                                    {% csrf_token %}
+
+                                    <button value="{{ business.id }}" name="Recname" class="btn" style="color: white;background:rgb(9, 170, 44)">
+                                       <i style="color:red" class="fas fa-heart    "></i>  <b>Recommend</b> <span class="badge badge-primary">{{ business.recommendations }}</span>
+                                    </button>
+
+                            </form>
+
+
+
+
+
+                        </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <div style="width: 100%;height: 100%;">
+            <h5 class="display-4 text-center">About <i class="fas fa-info    "></i></h5>
+            <hr>
+            <blockquote class="blockquote">
+                <p class="mb-0">{{ business.description }}</p>
+                <footer class="blockquote-footer">{{ business.user.username }}(Owner)</footer>
+            </blockquote>
+        </div>
+        <div class="container">
+            <div class="row">
+                    <div class="mt-3 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xlg-5" style="width: 100%;height: 100%;">
+                            <h4 class="display-4 text-center">Contact Info <i class="fas fa-envelope    "></i></h4>
+                            <hr>
+                            <p><b>Cell no: {{ business.phone_number }}</b></p>
+                            <p><b>office no: {{ business.office_number }}</b></p>
+                            <p><b>Email: {{ business.business_email }}</b></p>
+                            <p><b>Fax: {{ business.fax }}</b></p>
+
+
+
+
+                        </div>
+
+                    <div class="mt-3 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xlg-5" style="width: 100%;height: 100%;">
+                        <h4 class="display-4 text-center">Location <i class="fas fa-location-arrow    "></i></h4>
+                        <hr>
+                        <div class="mb-3" id="map" style="width: 100%;height:250px;background:red">
+                        </div>
+                        <a style="background-color:  rgb(9, 170, 44);color:white" class="btn" href="{%  url 'directions' tob=business.type_of_business id=business.id %}">Get Directions <i class="fas fa-directions    "></i></a>
+                        <p><b>{{ business.streetname }}</b></p>
+                        <p><b>{{ business.suburb }}</b></p>
+                        <p><b>{{ business.city }}</b></p>
+                        <p><b>{{ business.province }}</b></p>
+                        <p><b>2735</b></p>
+
+
+
+                    </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+                <h4 class="display-4 text-center">Operating Hours <i class="fas fa-clock    "></i></h4>
+                <hr>
+
+                <div class="row">
+                        <div class="mt-3 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xlg-5" style="width: 100%;height: 100%;">
+                              <p><b>{{ business.operating_hours }}</b></p>
+
+
+
+                            </div>
+                            </div>
+                            </div>
+
+
+        <div class="container">
+                <h4 class="display-4 text-center">Preview <i class="fas fa-eye    "></i></h4>
+                <hr>
+            <div class="row">
+
+                <div style="max-width:250px;height: 250px;background-image:url('{{ business.Product1.url }}');background-position:center;background-repeat:no-repeat;background-size:cover" class="mb-2 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xlg-5 mr-1">
+
+                </div>
+                <div style="max-width:250px;height: 250px;background-image:url('{{ business.Product2.url }}');background-position:center;background-repeat:no-repeat;background-size:cover" class="mb-2 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xlg-5 mr-1">
+
+                </div>
+                <div style="max-width:250px;height: 250px;background-image:url('{{ business.Product3.url }}');background-position:center;background-repeat:no-repeat;background-size:cover" class="mb-2 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xlg-5 mr-1">
+
+                </div>
+                <div style="max-width:250px;height: 250px;background-image:url('{{ business.Product4.url }}');background-position:center;background-repeat:no-repeat;background-size:cover" class="mb-4 col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xlg-5 mr-1">
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+<script>
+
+    function initMap(){
+
+        var buslat  = '{{ business.latitude }}';
+        var buslong = '{{ business.longitude }}';
+        var tob = '{{ business.type_of_business }}';
+        var png;
+
+
+        if (tob == 'Guest House'){
+            png = '{% static "mapicons/motel.png" %}';
+        }else if(tob== 'Cosmatics'){
+            png = '{% static "mapicons/cosmetics.png" %}';
+        }else if(tob == "Club"){
+           png = '{% static "mapicons/bars.png" %}';
+        }else if(tob == "Food"){
+            png = '{% static "mapicons/food.png" %}';
+        }else if(tob == "Liquor Store"){
+            png = '{% static "mapicons/beer.png" %}';
+        }else if(tob == "BarberShop"){
+            png = '{% static "mapicons/salon.png" %}';
+        }else if(tob == "Salon"){
+            png = '{% static "mapicons/Salon.png" %}';
+        }
+
+
+
+
+        var options = {
+
+            center:{lat:parseFloat(buslat),lng:parseFloat(buslong)},
+            zoom:17,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+
+        };
+
+
+
+        var markerop = {
+
+            position:{lat:parseFloat(buslat),lng:parseFloat(buslong)},
+            map:map,
+
+        }
+
+        var map = new google.maps.Map(document.getElementById('map'),options);
+
+        var marker = new google.maps.Marker({
+            position:{lat:parseFloat(buslat),lng:parseFloat(buslong)},
+            map:map,
+            icon:png
+
+        });
+
+    }
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj8V-SQFaqJu17xCRcSZOGtIXh6ZhUMqY&callback=initMap"
+async defer></script>
+
+{% endblock content %}

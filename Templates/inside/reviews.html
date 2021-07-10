@@ -1,0 +1,120 @@
+{% extends 'inside/base.html' %}
+{% load crispy_forms_tags%}
+
+
+
+{% block content %}
+
+<h2 style="font-family: 'Roboto', sans-serif;" class="text-center mt-3 mb-3">Write review</h2>
+<hr>
+<div class="shadows p-3 mb-5 bg-white rounded">
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 ">
+                        {{ form.body|as_crispy_field }}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ">
+                        {{ form.picture|as_crispy_field }}
+                    </div>
+
+                </div>
+                <input class="btn btn-warning" type="submit" value="post">
+            </div>
+
+
+
+
+
+        </form>
+
+</div>
+
+
+
+<h2 style="font-family: 'Roboto', sans-serif;" class="text-center mb-3" >Reviews</h2>
+<hr>
+
+<div class="shadows  py-3 mb-3">
+
+        {%for review in reviews %}
+
+        {% if review.picture != "empty.jpg" %}
+
+
+
+        <div class="container mb-4 " style="background-color: white">
+                <div class="row {% if forloop.counter|divisibleby:2 %}justify-content-end{% endif %}">
+                        <div class=" col-xs-12 col-sm-12 col-md-10 col-md-lg-8 d-flex " style="height: -webkit-fit-content;height: fit-content;background-color: white">
+                                 <div class="border rounded-circle flex-shrink-0" style="height: 50px;width: 50px;margin-right: 5px;margin-left: 0px;max-height:50px;background-image: url('{{ review.author.userpic.url}}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+
+                                <div class="card w-75 shadows bg-white ">
+
+                                        <div class="card-body pb-1 pt-1">
+                                                <h4 class="card-title">
+                                                        {% if review.author == user%}
+                                                        You
+                                                        {%else%}
+                                                        {{ review.author }}
+                                                        {%endif%}</h4>
+                                                        <hr>
+                                            <p class="card-text">{{ review.body }}</p>
+                                            <div class="container">
+
+                                                    <div class="thombe" style="width: 100%;height:200px; background-image: url('{{ review.picture.url }}'); background-repeat: no-repeat; background-size: cover;background-position: center;" >
+
+                                                    </div>
+                                                    <a href="{{ review.picture.url }}">view full image</a>
+                                                    <p><small>{{ review.date }}</small></p>
+                                                </div>
+                                        </div>
+                                    </div>
+
+                            </div>
+                </div>
+
+            </div>
+        {%else%}
+        <div class="container mb-4 " style="background-color: white">
+                <div class="row {% if forloop.counter|divisibleby:2 %}justify-content-end{% endif %} ">
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-md-lg-8 d-flex " style="height: -webkit-fit-content;height: fit-content;background-color: white">
+                            <div class="border rounded-circle flex-shrink-0" style="height: 50px;width: 50px;margin-right: 5px;margin-left: 0px;max-height:50px;background-image: url('{{ review.author.userpic.url}}'); background-repeat: no-repeat; background-size: cover;background-position: center;"></div>
+                                <div class="card w-75 shadows bg-white ">
+
+                                        <div class="card-body pb-1 pt-1">
+                                                <h4 class="card-title">
+                                                        {% if review.author == user%}
+                                                        You
+                                                        {%else%}
+                                                        {{ review.author }}
+                                                        {%endif%}</h4>
+                                                        <hr>
+                                            <p class="card-text">{{ review.body }}</p>
+                                            <div class="container">
+
+
+                                                    <p><small>{{ review.date }}</small></p>
+                                                </div>
+                                        </div>
+                                    </div>
+                            </div>
+                </div>
+
+            </div>
+
+
+
+        {%endif%}
+
+
+        {%endfor%}
+
+
+</div>
+
+
+
+
+{% endblock content %}
